@@ -53,7 +53,9 @@ class Student
   
   def self.find_by_name
     sql = <<-SQL
-      SELECT * FROM students WHERE 
+      SELECT * FROM students WHERE name = ? LIMIT 1
+      SQL
+    DB[:conn].execute(sql, self.name).map do |row|
   end
   
   def update
